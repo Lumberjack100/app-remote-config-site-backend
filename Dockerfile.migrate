@@ -1,0 +1,11 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# 执行迁移后退出
+CMD ["alembic", "upgrade", "head"]
