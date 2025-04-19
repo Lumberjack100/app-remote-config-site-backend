@@ -11,8 +11,11 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 # 复制代码
 COPY . /app/
 
+# 确保启动脚本有执行权限
+RUN chmod +x /app/start.sh
+
 # 暴露端口
 EXPOSE 8000
 
-# 启动命令
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# 使用启动脚本
+CMD ["/app/start.sh"]
